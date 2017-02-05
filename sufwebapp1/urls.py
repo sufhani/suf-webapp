@@ -1,3 +1,4 @@
+
 """sufwebapp1 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -16,6 +17,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from collection import views
+
 urlpatterns = [
+    url(r'^$', views.index, name='home'),
     url(r'^admin/', admin.site.urls),
 ]
