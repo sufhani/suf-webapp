@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.template.defaultfilters import slugify
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 from collection.forms import ThingForm
 from collection.models import Thing
@@ -21,9 +23,15 @@ def thing_detail(request, slug):
         'thing': thing,
     })
 
+@login_required
 def edit_thing(request, slug):
     # grab the object
     thing = Thing.objects.get(slug=slug)
+
+    # make sure the logged in user is the owner of the thing
+    if thing.user != request.user:
+        raise Http404
+        
     # set the form we're using
     form_class = ThingForm
 
