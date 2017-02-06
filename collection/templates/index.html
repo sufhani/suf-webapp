@@ -5,16 +5,13 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Hello world!</h1>
-    <p>There are {{ number|apnumber }} dog!
-    {% if number == 6%}
-        True!
-    {% else %}
-        False
-    {% endif %}
-    </p>
-    <p>
-    This is my name: {{ thing|truncatewords:1 }}
-    </p>
+    {% for thing in things %}
+    <h2>
+        <a href="{% url 'thing_detail' slug=thing.slug%}">
+            {{ thing.name }}
+        </a>
+    </h2>
+    <p>{{ thing.description }}</p>
+    {% endfor %}
 {% endblock content %}
 
