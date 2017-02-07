@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT hellowebapp.wsgi:application
+web: waitress-serve --port=$PORT sufwebapp1.wsgi:application
